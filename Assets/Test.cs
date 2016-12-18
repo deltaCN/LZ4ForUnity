@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using LZ4;
+using Pathfinding.Ionic.Zip;
 using UnityEngine;
 public class Test : MonoBehaviour
 {
@@ -12,24 +13,24 @@ public class Test : MonoBehaviour
         //TestLZ4();
     }
 
-    //private void TestZip()
-    //{
-    //    for (int i = 0; i < 100; i++)
-    //    {
-    //        MemoryStream memoryStream = new MemoryStream();
-    //        byte[] textBytes = textAsset.bytes;
-    //        memoryStream.Write(textAsset.bytes, 0, textBytes.Length);
-    //        memoryStream.Position = 0;
-    //        ZipFile zip = ZipFile.Read(memoryStream);
-    //        foreach (string entryFileName in zip.EntryFileNames)
-    //        {
-    //            ZipEntry entry = zip[entryFileName];
-    //            MemoryStream extractMemoryStream = new MemoryStream();
-    //            entry.Extract(extractMemoryStream);
-    //        }
-    //    }
+    private void TestZip()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            byte[] textBytes = textAsset.bytes;
+            memoryStream.Write(textAsset.bytes, 0, textBytes.Length);
+            memoryStream.Position = 0;
+            ZipFile zip = ZipFile.Read(memoryStream);
+            foreach (string entryFileName in zip.EntryFileNames)
+            {
+                ZipEntry entry = zip[entryFileName];
+                MemoryStream extractMemoryStream = new MemoryStream();
+                entry.Extract(extractMemoryStream);
+            }
+        }
 
-    //}
+    }
     private void TestLZ4()
     {
         for (int i = 0; i < 100; i++)
